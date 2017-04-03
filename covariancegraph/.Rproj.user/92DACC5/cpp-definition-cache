@@ -1,0 +1,17 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 15,
+                "file" : "/Users/syedrahman/Documents/Spring2017/CholeskyPaper1/covariancegraph/src/fillgraph.cpp",
+                "kind" : 6,
+                "line" : 5,
+                "name" : "gNM1(NumericMatrix, int)",
+                "parent_name" : "",
+                "usr" : "c:@F@gNM1#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#I#"
+            }
+        ],
+        "file" : "/Users/syedrahman/Documents/Spring2017/CholeskyPaper1/covariancegraph/src/fillgraph.cpp",
+        "file_last_write" : 1490648916
+    }
+]

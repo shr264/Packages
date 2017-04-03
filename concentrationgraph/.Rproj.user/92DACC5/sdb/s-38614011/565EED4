@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"test_rmpi\"\nauthor: \"Syed Rahman\"\ndate: \"3/16/2017\"\noutput: html_document\n---\n\n```{r setup, include=FALSE}\nsetwd(\"/Users/syedrahman/Documents/Spring2017/CholeskyPaper1Simulations500init\")\nknitr::opts_chunk$set(echo = TRUE)\nknitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)\nlibrary(dplyr)\nlibrary(knitr)  \nlibrary(Rmpi)\nlibrary(doMPI)\n```\n\n\n```{r, echo= FALSE}\ncompare = function(p,n,z) {\nlibrary(Matrix)\nlibrary(MASS)\nlibrary(spam)\nlibrary(fillgraph)\nsource('concentrationgraph.r')\n##### for p = 500, z = 0.0065 gives 2.8% density\ns = 0.5  # fraction of negative coefficients\na = 0.3  # minimum magnitude of non-zero coefficients\nb = 0.7  # maximum magnitude of non-zero coefficients\n\nplower = p*(p-1)/2\n\nset.seed(12345) #seed for generating L\n## diagonals\nD = runif(p,2,5)\n\n## off-diagonals\nT = diag(p)\nT[upper.tri(T)] = 0\nT[lower.tri(T)] = (ifelse(runif(plower)<s, -1, 1) * \n\t\t   ifelse(runif(plower)<z,  1, 0) * \n\t\t   runif(plower, a, b))\n\nL = diag(1.0/sqrt(D)) %*% T   # cholesky factor\nomega = t(L) %*% L            # omega\nsigma = solve(omega)\nsigma[abs(sigma)<1e-10] = 0   # set numerical error to zero\n\ndensity = sum(abs(omega[lower.tri(omega)])>0)/choose(p,2)\n\nset.seed(23456 + 1) #seed for generating data\nX = mvrnorm(n, mu=rep(0, p), Sigma=sigma) # observations\n\nX = scale(X, center = TRUE, scale = FALSE) # centered obs\n\nalgo1time = proc.time()[3]\nalgo1 = concentrationgraph(Y = X, G = abs(omega)>0)$Shat\nalgo1time = proc.time()[3] - algo1time\nalgo1norm = norm(algo1-omega,type=\"F\")/norm(omega,type=\"F\")\n\nipftime = proc.time()[3]\nipfshat = ipf(X,abs(omega)>0,10^(-5))$Shat\nipftime = proc.time()[3] - ipftime\nipfnorm = norm(ipfshat-omega,type=\"F\")/norm(omega,type=\"F\")\n\nipfalgotime = proc.time()[3]\nipfalgoshat = ipf(X,abs(omega)>0,10^(-5), algo1)$Shat\nipfalgotime = proc.time()[3] - ipfalgotime\nipfalgonorm = norm(ipfalgoshat-omega,type=\"F\")/norm(omega,type=\"F\")\n\nreturn(list(density = density, algo1time = algo1time,algo1norm = algo1norm, ipftime = ipftime,ipfnorm = ipfnorm, ipfalgotime = ipfalgotime, ipfalgonorm = ipfalgonorm))\n}\n```\n\n\n## p = 20\n\n```{r echo=TRUE, results='hide'}\np = 20\n```\n\n```{r echo=TRUE}\nnslaves <- mpi.universe.size() - 2\ncl <- startMPIcluster(nslaves)\nregisterDoMPI(cl)\nclusterSize(cl)\n\nz = c(0.1, 0.05, 0.025, 0.01, 0.0001)\nn = c(4*p, 2*p, p, floor(0.75*p))\n\n#out <- foreach(i = 1:4,  .packages=c(\"MASS\",\"spam\",\"Matrix\",\"fillgraph\")) %dopar% {  \n#  data <- data.frame(as.data.frame(compare(p,n[1],z[i])), n = toString(n[1]))\n#    }\n\nout <- foreach(i = 1:4,  .packages=c(\"MASS\",\"spam\",\"Matrix\",\"fillgraph\")) %dopar% {  \n  data <- data.frame(x = i^2)\n    }\n\ncloseCluster(cl)\n\ndata \n```\n\n",
+    "created" : 1489760688213.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3973577173",
+    "id" : "565EED4",
+    "lastKnownWriteTime" : 1489701868,
+    "last_content_update" : 1489760758118,
+    "path" : "~/Documents/Spring2017/CholeskyPaper1Simulations500init/_test_rmpi.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "last_setup_crc32" : "8AF91F1F4eb439f4"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

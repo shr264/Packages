@@ -1,0 +1,29 @@
+"0","setwd(""/Users/syedrahman/Documents/Spring2017/CholeskyPaper1Simulations500init"")"
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","knitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)"
+"0","library(dplyr)"
+"2","
+Attaching package: ‘dplyr’
+
+"
+"2","The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","library(knitr)  "
+"0","library(Rmpi)"
+"0","library(doMPI)"
+"2","Loading required package: foreach
+"
+"2","foreach: simple, scalable parallel programming from Revolution Analytics
+Use Revolution R for scalability, fault tolerance and more.
+http://www.revolutionanalytics.com
+"
+"2","Loading required package: iterators
+"
