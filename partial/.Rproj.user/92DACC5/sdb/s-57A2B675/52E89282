@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Gaussian DAGs with known partial ordering\"\nauthor: \"Syed Rahman\"\nheader-includes:\n  - \\newcommand{\\abs}[1]{\\left|#1\\right|}\n  - \\DeclareMathOperator*{\\trace}{trace}\n  - \\DeclareMathOperator*{\\sign}{sign}\n  - \\usepackage{tkz-graph}\n  - \\usetikzlibrary{arrows,positioning,automata}\ndate: \"4/17/2017\"\noutput:\n  pdf_document: \n    keep_tex: true\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\nknitr::opts_chunk$set(tidy.opts=list(width.cutoff=60),tidy=TRUE)\nlibrary(knitr)\nlibrary(MASS)\nlibrary(ggplot2)\nlibrary(Matrix)\nlibrary(pcalg)\nlibrary(Rgraphviz)\nlibrary(igraph)\nlibrary(sparsebn)\nlibrary(partial)\nlibrary(ggm)\nsetwd(\"/Users/syedrahman/Documents/Fall2017/Research\")\nload(\"amat.Rdata\")\nsource(\"helperfunctions.R\")\nset.seed(12345)\n```\n\n```{r}\ngenB <- function(Yeast1, a = 0.3, b = 0.7){\n  p = dim(Yeast1)[1]\n  m = floor(p/2)\n  Border = c(sample(1:m,m),sample((m+1):p,m))\n  adj = t(topSort(Yeast1))\n  adj = adj[Border,Border]\n  Bmat = matrix(runif(p^2,a,b),nrow = p, ncol = p)\n  signmat = matrix(0,nrow = p, ncol = p)\n  signmat = ifelse(runif(p^2)<0.5,-1,1)\n  B = adj*Bmat*signmat\n  diag(B) = runif(p,2,5)\n  return(list(adj = adj,B = B))\n}\n```\n\n```{r yeast1}\nn = 200\n\nBY1 = genB(Yeast1)\ngraph = graph_from_adjacency_matrix(BY1$adj)\np = dim(BY1$adj)[1]\nm1 = 25\ncoords = matrix(0,ncol = 2, nrow = p)\ncoords[1:p,1] = seq(1,100,length = p)\ncoords[1:m1,2] = 1\ncoords[(m1+1):(p),2] = 2\nprint(plot(graph, layout = coords, vertex.size=10, vertex.label.dist = .1, edge.arrow.size = 0.5))\n\nomega = t(BY1$B) %*% BY1$B            # omega\nsigma = solve(omega)\nsigma[abs(sigma)<1e-10] = 0   # set numerical error to zero\nset.seed(23456 + 1) #seed for generating data\nX = mvrnorm(n, mu=rep(0, p), Sigma=sigma) # observations\nX = scale(X,center = TRUE, scale=TRUE)\n```\n\n\n\n\n\n```{r, echo = FALSE}\nreps = 20\nccdrfpr = rep(0,reps)\nccdrtpr = rep(0,reps)\npartialfpr = rep(0,reps)\npartialtpr = rep(0,reps)\nccdrmcc = rep(0,reps)\npartialmcc = rep(0,reps)\n```\n\n## CCDr\n\n```{r, lambda ,echo=TRUE,results='hide',fig.keep='all'}\n#lambda = seq(0.01,4, length= reps)\nlambda = 0.1\n```\n\n```{r, ccdr, echo=TRUE,results='hide',fig.keep='all'}\nfor(i in 1:length(lambda)){\n  estadj = ccdr_cust(X = X,lambda = lambda[i],verbose = TRUE)!=0\n  ccdrfpr[i] = fpr(BY1$B!=0,estadj)\n  ccdrtpr[i] = tpr(BY1$B!=0,estadj)\n  ccdrmcc[i] = mcc(BY1$B!=0,estadj)\n  diag(estadj) = 0\n  rownames(estadj) = colnames(X)\n  colnames(estadj) = colnames(X)\n  #diag(estadj) = 0\n  graphccdr = graph_from_adjacency_matrix(estadj)\n  print(plot(graphccdr, layout = coords, vertex.size=15, vertex.label.dist = .1, edge.arrow.size = 0.5))\n}\n```\n\n```{r}\nccdrfpr\nccdrtpr\nccdrmcc\n```\n\n## Partial CCDr\n\n```{r, partial, echo=TRUE,results='hide',fig.keep='all'}\nfor(i in 1:length(lambda)){\n  estadj = partial_cust2(X=X,lambda = lambda[i],m = 25, verbose = TRUE)!=0\n  partialfpr[i] = fpr(BY1$B!=0,estadj)\n  partialtpr[i] = tpr(BY1$B!=0,estadj)\n  partialmcc[i] = mcc(BY1$B!=0,estadj)\n  diag(estadj) = 0\n  rownames(estadj) = colnames(X)\n  colnames(estadj) = colnames(X)\n  #diag(estadj) = 0\n  graphccdr = graph_from_adjacency_matrix(estadj)\n  print(plot(graphccdr, layout = coords, vertex.size=15, vertex.label.dist = .1, edge.arrow.size = 0.5))\n}\n```\n\n```{r}\npartialfpr\npartialtpr\npartialmcc\n```\n\n",
+    "created" : 1505933297629.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1219047272",
+    "id" : "52E89282",
+    "lastKnownWriteTime" : 1505933326,
+    "last_content_update" : 1505933368839,
+    "path" : "~/Documents/Fall2017/Research/SpecialDAGs.Rmd",
+    "project_path" : null,
+    "properties" : {
+        "last_setup_crc32" : "DE627F3C292ff43a"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

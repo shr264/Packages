@@ -1,0 +1,6 @@
+"0","omega = t(BY1$B) %*% BY1$B            # omega"
+"0","sigma = solve(omega)"
+"0","sigma[abs(sigma)<1e-10] = 0   # set numerical error to zero"
+"0","set.seed(23456 + 1) #seed for generating data"
+"0","X = mvrnorm(n, mu=rep(0, p), Sigma=sigma) # observations"
+"0","X = scale(X,center = TRUE, scale=TRUE)"

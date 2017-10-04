@@ -1,0 +1,7 @@
+"0","reps = 20"
+"0","ccdrfpr = rep(0,reps)"
+"0","ccdrtpr = rep(0,reps)"
+"0","partialfpr = rep(0,reps)"
+"0","partialtpr = rep(0,reps)"
+"0","ccdrmcc = rep(0,reps)"
+"0","partialmcc = rep(0,reps)"

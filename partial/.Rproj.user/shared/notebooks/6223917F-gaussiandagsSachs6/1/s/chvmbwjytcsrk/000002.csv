@@ -1,0 +1,6 @@
+"0","data = read.csv('SachsData.csv')"
+"0","data = data[,2:12]"
+"0","data = data[,c(3,5,4,9,8,7,1,2,11,10,6)]"
+"0","X = scale(data, center = TRUE, scale = TRUE)"
+"0","order3 = sample(1:11)"
+"0","X = X[,order3]"

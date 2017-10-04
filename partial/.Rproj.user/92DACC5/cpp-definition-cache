@@ -1,0 +1,107 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 8,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 7,
+                "name" : "soft_thresh(double, double)",
+                "parent_name" : "",
+                "usr" : "c:@F@soft_thresh#d#d#"
+            },
+            {
+                "column" : 8,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 22,
+                "name" : "Bii(NumericMatrix, NumericMatrix, int, int)",
+                "parent_name" : "",
+                "usr" : "c:@F@Bii#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#I#I#"
+            },
+            {
+                "column" : 8,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 33,
+                "name" : "Bki(NumericMatrix, NumericMatrix, int, int, int, double)",
+                "parent_name" : "",
+                "usr" : "c:@F@Bki#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#I#I#I#d#"
+            },
+            {
+                "column" : 8,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 44,
+                "name" : "qBki(NumericMatrix, double, NumericMatrix, int, int, int, double)",
+                "parent_name" : "",
+                "usr" : "c:@F@qBki#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#d#S0_#I#I#I#d#"
+            },
+            {
+                "column" : 8,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 58,
+                "name" : "Bik(NumericMatrix, NumericMatrix, int, int, int, double)",
+                "parent_name" : "",
+                "usr" : "c:@F@Bik#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#I#I#I#d#"
+            },
+            {
+                "column" : 8,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 69,
+                "name" : "qBik(NumericMatrix, double, NumericMatrix, int, int, int, double)",
+                "parent_name" : "",
+                "usr" : "c:@F@qBik#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#d#S0_#I#I#I#d#"
+            },
+            {
+                "column" : 6,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 83,
+                "name" : "dfs_visit2(int **, int, int *, int &, int)",
+                "parent_name" : "",
+                "usr" : "c:@F@dfs_visit2#**I#I#S1_#&I#I#"
+            },
+            {
+                "column" : 5,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 103,
+                "name" : "dfs2(int **, int)",
+                "parent_name" : "",
+                "usr" : "c:@F@dfs2#**I#I#"
+            },
+            {
+                "column" : 15,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 122,
+                "name" : "ccdr_cust(NumericMatrix, NumericMatrix, double, int, double, bool)",
+                "parent_name" : "",
+                "usr" : "c:@F@ccdr_cust#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#d#I#d#b#"
+            },
+            {
+                "column" : 15,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 228,
+                "name" : "partial_cust1(NumericMatrix, NumericMatrix, double, int, int, double, bool)",
+                "parent_name" : "",
+                "usr" : "c:@F@partial_cust1#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#d#I#I#d#b#"
+            },
+            {
+                "column" : 15,
+                "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+                "kind" : 6,
+                "line" : 416,
+                "name" : "partial_cust2(NumericMatrix, NumericMatrix, double, int, int, double, bool)",
+                "parent_name" : "",
+                "usr" : "c:@F@partial_cust2#$@N@Rcpp@C@Matrix>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#d#I#I#d#b#"
+            }
+        ],
+        "file" : "/Users/syedrahman/Documents/Fall2017/Research/partial/src/partial.cpp",
+        "file_last_write" : 1505933978
+    }
+]
