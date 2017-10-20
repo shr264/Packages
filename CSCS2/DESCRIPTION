@@ -1,0 +1,11 @@
+Package: CSCS2
+Type: Package
+Title: Convec Sparse Cholesky Selection
+Version: 0.1.0
+Author: Syed Rahman
+Maintainer: Syed Rahman <shr264@ufl.edu>
+Imports: lassoshooting
+Description: High-Dimensional convex DAG estimation
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
